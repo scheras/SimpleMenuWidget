@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Simple Menu Widget
- * Plugin URI:
- * Description:
+ * Plugin URI:  https://github.com/scheras/SimpleMenuWidget
+ * Description: Simple WordPress widget displaying links list wherever you want.
  * Version:     0.1
  * Author:      ScheRas
  * Author URI:  http://www.scheras.eu/
