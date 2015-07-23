@@ -110,7 +110,7 @@ class Simple_Menu_Widget extends \WP_Widget
 	{
 		$instance = array ();
 
-		$instance[ 'title' ] = $new[ 'title' ];
+		$instance[ 'title' ]       = $new[ 'title' ];
 		$instance[ 'links_count' ] = filter_var ( (int)$new[ 'links_count' ], FILTER_VALIDATE_INT, array ( 'options' => array ( 'min_range' => 0, 'max_range' => 10, 'default' => 5 ) ) );
 
 		for ( $i = 0; $i < $old[ 'links_count' ]; $i++ ) {
