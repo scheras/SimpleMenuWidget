@@ -150,7 +150,7 @@ class Simple_Menu_Widget extends \WP_Widget
 				<?php print esc_html ( trim ( $instance[ 'title' ] ) ) ?>
 			<?php print $args[ 'after_title' ]; ?>
 		<?php endif; ?>
-		<?
+		<?php
 	}
 
 	/**
