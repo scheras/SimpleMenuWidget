@@ -33,15 +33,18 @@ class Simple_Menu_Widget extends \WP_Widget
 	 */
 	public function widget ( $args, $instance )
 	{
+		$links_count = ( isset ( $instance[ 'links_count' ] ) ) ? $instance[ 'links_count' ] : 5;
 		?>
 		<?php print $args[ 'before_widget' ]; ?>
 
 		<?php $this->display_title ( $args, $instance ); ?>
 
 		<ul class="simple-menu-widget">
-			<?php foreach ( $instance[ 'items' ] as $item ) : ?>
-				<?php $this->display_single_item ( $item[ 'title' ], $item[ 'link' ] ); ?>
-			<?php endforeach; ?>
+			<?php for ( $i = 0; $i < $links_count; $i++ ) : ?>
+				<?php if ( isset ( $instance[ 'item_' . $i . '_title' ] ) && $instance[ 'item_' . $i . '_link' ] ) : ?>
+					<?php $this->display_single_item ( $instance[ 'item_' . $i . '_title' ], $instance[ 'item_' . $i . '_link' ] ); ?>
+				<?php endif; ?>
+			<?php endfor; ?>
 		</ul>
 
 		<?php print $args[ 'after_widget' ]; ?>
@@ -60,17 +63,17 @@ class Simple_Menu_Widget extends \WP_Widget
 	public function form ( $instance )
 	{
 		$title = ( isset ( $instance[ 'title' ] ) ) ? $instance[ 'title' ] : '';
-		$link_count = ( isset ( $instance[ 'links_count' ] ) ) ? $instance[ 'links_count' ] : 5;
+		$links_count = ( isset ( $instance[ 'links_count' ] ) ) ? $instance[ 'links_count' ] : 5;
 		?>
 			<p>
 				<label for="<?php print esc_attr ( $this->get_field_id ( 'title' ) ); ?>"><?php esc_html_e ( 'Title:', 'simple-menu' ); ?>
 					<input type="text" name="<?php print esc_attr ( $this->get_field_name ( 'title' ) ); ?>" id="<?php echo $this->get_field_id ( 'title' ); ?>"  class="widefat" value="<?php print esc_attr ( $title ) ?>" placeholder="<?php esc_attr_e ( 'Widget Title', 'simple-menu' ); ?>">
 				</label>
 				<label for="<?php print esc_attr ( $this->get_field_id ( 'links_count' ) ); ?>"><?php esc_html_e ( 'Links Count:', 'simple-menu' ) ?>
-					<input type="number" step="1" min="1" max="10" name="<?php print esc_attr ( $this->get_field_name ( 'links_count' ) ); ?>" id="<?php print esc_attr ( $this->get_field_id ( 'links_count' ) ); ?>" class="widefat" value="<?php print esc_attr ( $link_count ); ?>">
+					<input type="number" step="1" min="1" max="10" name="<?php print esc_attr ( $this->get_field_name ( 'links_count' ) ); ?>" id="<?php print esc_attr ( $this->get_field_id ( 'links_count' ) ); ?>" class="widefat" value="<?php print esc_attr ( $links_count ); ?>">
 				</label>
 			</p>
-			<?php for ( $i = 0; $i < $link_count; $i++ ) : ?>
+			<?php for ( $i = 0; $i < $links_count; $i++ ) : ?>
 				<?php $item_title = isset( $instance[ 'item_'.$i.'_title' ] ) ? $instance[ 'item_'.$i.'_title' ] : ''; ?>
 				<?php $item_link = isset( $instance[ 'item_'.$i.'_link' ] ) ? $instance[ 'item_'.$i.'_link' ] : ''; ?>
 				<p>
